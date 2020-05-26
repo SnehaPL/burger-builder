@@ -52,3 +52,9 @@
         transform: scale(1);
     }
 }
+
+@media (max-width: 500px) {
+    .OrderButton{
+        width: 60%;
+    }
+}
