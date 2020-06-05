@@ -6,6 +6,7 @@ import BuildControls from '../../components/Burger/BuildControls/BuildControls.j
 import Modal from '../../components/UI/Modal/Modal.js';
 import OrderSummery from '../../components/Burger/OrderSummery/OrderSummer.js';
 import Spinner from '../../components/UI/Spinner/Spinner.js';
+import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler.js';
 import axiosInstance from '../../axios-orders.js';
 
 const INGREDIENT_PRICES = {
@@ -91,7 +92,7 @@ class BurgerBuilder extends Component {
             },
             deliveryMethod: 'COD'
         };
-        axiosInstance.post('/order.json', order)
+        axiosInstance.post('/order', order)
         .then(response => this.setState({loading: false, purchasing: false}))
         .catch(error => this.setState({loading: false, purchasing: false}));
     }
@@ -121,4 +122,4 @@ class BurgerBuilder extends Component {
     }
 }
 
-export default BurgerBuilder;
+export default withErrorHandler(BurgerBuilder, axiosInstance);
